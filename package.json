@@ -4,7 +4,10 @@
   "description": "The Personal Finance Tracker is a backend service that enables users to manage their financial activities, including tracking income, expenses, and budgets. Built with Express.js and Node.js, it uses MongoDB as the database to store dynamic financial data.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "dev": "ts-node-dev --poll ./src/server.ts",
+    "start": "node dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +29,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.2",
     "typescript": "^5.7.2"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0"
   }
 }
