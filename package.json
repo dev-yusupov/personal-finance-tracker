@@ -1,0 +1,30 @@
+{
+  "name": "personal-finance-tracker",
+  "version": "1.0.0",
+  "description": "The Personal Finance Tracker is a backend service that enables users to manage their financial activities, including tracking income, expenses, and budgets. Built with Express.js and Node.js, it uses MongoDB as the database to store dynamic financial data.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev-yusupov/personal-finance-tracker.git"
+  },
+  "author": "Bobur Yusupov",
+  "license": "MIT License",
+  "bugs": {
+    "url": "https://github.com/dev-yusupov/personal-finance-tracker/issues"
+  },
+  "homepage": "https://github.com/dev-yusupov/personal-finance-tracker#readme",
+  "dependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.2",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.2",
+    "typescript": "^5.7.2"
+  }
+}
