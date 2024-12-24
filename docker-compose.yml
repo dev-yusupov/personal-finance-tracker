@@ -1,7 +1,7 @@
 version: "3.8"
+
 services:
   app:
-    restart: always
     build:
       context: .
       dockerfile: Dockerfile
@@ -14,17 +14,23 @@ services:
       - .env
     depends_on:
       - mongo
-    command: >
-      sh -c "
-      npm run dev
-      "
+    command: "npm run dev"
+    environment:
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+
   mongo:
     image: mongo:latest
-    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_DATABASE: finance
     ports:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+      - ./mongo.conf:/etc/mongo/mongo.conf
 
 volumes:
   mongo-data:
+    driver: local
