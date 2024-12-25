@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 
 // MongoDB connection
-mongoose.connect('mongodb://root:example@mongodb:27017/')
+mongoose.connect('mongodb://root:example@mongodb:27017/finance?authSource=admin')
     .then(() => {
         console.log('Connected to MongoDB');
 
