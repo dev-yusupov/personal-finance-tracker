@@ -1,6 +1,7 @@
 import { Request, Response, RequestHandler } from "express";
 import User from '../models/userModel';
 import generateToken from "../utils/generateToken";
+import { AuthenticatedRequest } from "../middlewares/authenticationMiddleware";
 
 export const register: RequestHandler = async (request: Request, response: Response): Promise<void> => {
     const { username, email, password } = request.body;
@@ -49,4 +50,18 @@ export const login: RequestHandler = async (request: Request, response: Response
         })
     } catch (error: any) {}
 
+};
+
+export const getProfile: RequestHandler = async (request: AuthenticatedRequest, response: Response): Promise<void> => {
+    try {
+        const user = await User.findById(request.user).select('-password');
+        if (!user) {
+            response.status(404).json({ message: 'User not found' });
+            return;
+        }
+        response.status(200).json(user);
+    } catch (error: any) {
+        response.status(500).json({ message: 'Something went wrong' });
+        console.error(error.message);
+    }
 };

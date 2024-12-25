@@ -3,20 +3,26 @@ import jwt from "jsonwebtoken";
 
 interface AuthenticatedRequest extends Request {
     user?: string;
+    userId?: string;
 };
 
-export const protect = (request: AuthenticatedRequest, response: Response, next: NextFunction) => {
+export const protect = (request: AuthenticatedRequest, response: Response, next: NextFunction): void => {
     const token = request.header('Authorization');
 
     if (!token) {
-        return response.status(401).json({ message: 'Unauthorized' });
+        console.log('No token provided');
+        response.status(401).json({ message: 'Unauthorized' });
+        return;
     }
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
         request.user = (decoded as { id: string }).id;
         next();
-    } catch (error) {
-        return response.status(401).json({ message: 'Unauthorized' });
+    } catch (error : any) {
+        console.log('Token verification failed:', error.message);
+        response.status(401).json({ message: 'Unauthorized' });
     }
 };
+
+export { AuthenticatedRequest };
