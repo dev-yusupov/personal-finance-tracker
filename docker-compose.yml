@@ -21,10 +21,12 @@ services:
       - "27027:27017"
     volumes:
       - mongo-data:/data/db
+      - ./mongo-config:/etc/mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
       MONGO_INITDB_DATABASE: finance
+    command: ["mongod", "--config", "/etc/mongo/mongod.conf"]
 
 volumes:
   mongo-data:
