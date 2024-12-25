@@ -30,3 +30,23 @@ export const register: RequestHandler = async (request: Request, response: Respo
         console.error(error.message);
     }
 };
+
+export const login: RequestHandler = async (request: Request, response: Response): Promise<void> => {
+    const { email, password } = request.body;
+
+    try {
+        const user = await User.findOne({ email }); // Filter users by email
+
+        if (!user || !(await user.comparePassword(password))) {
+            response.status(401).json({ message: 'Invalid email or password' });
+        }
+
+        response.status(200).json({
+            id: user?._id,
+            username: user?.username,
+            email: user?.email,
+            token: generateToken(user?._id as string),
+        })
+    } catch (error: any) {}
+
+};
