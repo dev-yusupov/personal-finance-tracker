@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **Personal Finance Tracker** is a backend service that enables users to manage their financial activities, including tracking income, expenses, and budgets. Built with **Express.js** and **Node.js**, it uses **MongoDB** as the database to store dynamic financial data.
+The **Personal Finance Tracker** is a backend service that enables users to manage their financial activities, including tracking income, expenses, and budgets. Built with **TypeScript**, **Express.js** and **Node.js**, it uses **MongoDB** as the database to store dynamic financial data.
 
 ---
 
